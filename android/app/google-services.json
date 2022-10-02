@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "188215678703",
+    "project_id": "signinauth-81bc5",
+    "storage_bucket": "signinauth-81bc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188215678703:android:9882de5cb454ed1f036d1a",
+        "android_client_info": {
+          "package_name": "com.example.authfor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188215678703-l6siniaeu3fodj1jre95hklqr7j6m8s3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaFWdL-Nqg-kPxWoIt6rSu1ESWYZisCk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188215678703-l6siniaeu3fodj1jre95hklqr7j6m8s3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
