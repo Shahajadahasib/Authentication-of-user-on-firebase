@@ -34,11 +34,12 @@ class Wrapper extends StatelessWidget {
       builder: (_, AsyncSnapshot<UserModel?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final UserModel? user = snapshot.data;
-          // log(user!.email.toString());
+          // log(user!.uid.toString());
           return user == null
               ? SignIn()
               : MyHomePage(
-                  uid: user.email.toString(),
+                  email: user.email.toString(),
+                  uid: user.uid.toString(),
                 );
         } else {
           return const Scaffold(

@@ -28,7 +28,7 @@ class _MyHomePageState extends State<SignIn> {
           TextFormField(
             autofocus: false,
             controller: emailEditingController,
-            keyboardType: TextInputType.name,
+            keyboardType: TextInputType.emailAddress,
             // validator: (value) {
             //   RegExp regex = new RegExp(r'^.{3,}$');
             //   if (value!.isEmpty) {
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<SignIn> {
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.account_circle),
               contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Name",
+              hintText: "Email",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -56,16 +56,6 @@ class _MyHomePageState extends State<SignIn> {
             autofocus: false,
             controller: passwordEditingController,
             keyboardType: TextInputType.name,
-            validator: (value) {
-              RegExp regex = new RegExp(r'^.{3,}$');
-              if (value!.isEmpty) {
-                return ("First Name cannot be Empty");
-              }
-              if (!regex.hasMatch(value)) {
-                return ("Enter Valid name(Min. 3 Character)");
-              }
-              return null;
-            },
             onSaved: (value) {
               emailEditingController.text = value!;
             },
@@ -73,7 +63,7 @@ class _MyHomePageState extends State<SignIn> {
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.account_circle),
               contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Email",
+              hintText: "Password",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

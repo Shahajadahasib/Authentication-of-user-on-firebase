@@ -41,40 +41,26 @@ import 'package:authfor/models/user.dart';
 import 'package:authfor/screen/home/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthService {
+  final usersdata = FirebaseFirestore.instance.collection("Users");
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  String? email, username;
+  String? email, username, password, conpassword, uid;
   UserModel? _userFromFirebase(auth.User? user) {
     if (user == null) {
       return null;
     }
     return UserModel(
+      uid: user.uid,
       email: user.email,
-      username: user.uid,
     );
   }
-
-  // UserModel? profileService(auth.User? user) {
-  //   (UserModel userModel) {
-  //     email = userModel.email;
-  //     username = userModel.username;
-  //     return profileService;
-  //   };
-  // }
 
   Stream<UserModel?>? get user {
     return _firebaseAuth.authStateChanges().map(
           (_userFromFirebase),
         );
   }
-
-  // void inputData() {
-  //   final User user = firestoreService.collection();
-  //   final uid = user.uid;
-  // }
 
   Future<UserModel?> signInWithEmailAndPassword(
     String email,
@@ -89,7 +75,17 @@ class AuthService {
     String password,
   ) async {
     final credential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
+    // .then(
+    //   (value) => {
+    //     FirebaseFirestore.instance.collection("Users").doc(value!.uid).set({
+    //       "Email": value.user!.email.toString(),
+    //     })
+    //   },
+    // );
+
     return _userFromFirebase(credential.user);
   }
 
@@ -97,18 +93,20 @@ class AuthService {
     return await _firebaseAuth.signOut();
   }
 
-  // storenewuser(user, context) async {
-  //   var firebase = await FirebaseAuth.instance.currentUser;
-  //   FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(firebase?.uid)
-  //       .set({'email': user.email, 'uid': user.uid})
-  //       .then(
-  //         (value) => Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) =>  MyHomePage(uid: '',))),
-  //       )
-  //       .catchError((e) {
-  //         print(e);
-  //       });
-  // }
+  Future<void> crateValue(
+    String username,
+    String uid,
+    String email,
+    // String password,
+    // String repassword,
+  ) async {
+    final usersdata = FirebaseFirestore.instance.collection(
+        "Users"); //FirebaseFirestore.instance.collection(_firebaseAuth.currentUser!.uid);
+    usersdata.add({
+      'displayname': username,
+      'uid': _firebaseAuth.currentUser!.uid,
+      'email': email
+    });
+    return;
+  }
 }
